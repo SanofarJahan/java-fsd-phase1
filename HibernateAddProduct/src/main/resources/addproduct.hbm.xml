@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-mapping>
+<class name="demo.AddProduct" table="eproduct">
+<id name="ProductId" column="ProductId">
+<generator class="increment"/>
+</id>
+<property name="PName" type="string"/>
+<property name="Category" type="string"/>
+<property name="Price" type="string"/>
+<property name="Quantity" type="string"/>
+</class>
+</hibernate-mapping>
