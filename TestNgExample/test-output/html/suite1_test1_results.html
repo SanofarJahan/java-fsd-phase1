@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head>
+  <title>Test Results Report - Test</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="description" content="TestNG unit test results." />
+  <link href="reportng.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="reportng.js"></script>
+</head>
+<body>
+<h1>Test</h1>
+<p>
+  Test duration: 30.227s
+</p>
+
+
+
+  <table class="resultsTable">
+    <tr><th colspan="3" class="header failed">Failed Tests</th></tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.GroupTest</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  launchFireFox
+      </td>
+  <td class="duration">
+    0.023s
+  </td>
+  <td class="result">
+        
+    
+        
+
+        <a href="javascript:toggleElement('exception-0', 'block')" title="Click to expand/collapse"><b>java.lang.IllegalStateException: The driver executable must exist: D:\Phase-5\geckodriver-v0.31.0-win64_new\geckodriver.exe</b></a><br />
+    <div class="stackTrace" id="exception-0">
+              org.openqa.selenium.internal.Require$FileStateChecker.isFile(Require.java:342)<br />
+              org.openqa.selenium.remote.service.DriverService.checkExecutable(DriverService.java:147)<br />
+              org.openqa.selenium.remote.service.DriverService.findExecutable(DriverService.java:142)<br />
+              org.openqa.selenium.firefox.GeckoDriverService.access$100(GeckoDriverService.java:45)<br />
+              org.openqa.selenium.firefox.GeckoDriverService$Builder.findDefaultExecutable(GeckoDriverService.java:181)<br />
+              org.openqa.selenium.remote.service.DriverService$Builder.build(DriverService.java:437)<br />
+              org.openqa.selenium.firefox.GeckoDriverService.createDefaultService(GeckoDriverService.java:94)<br />
+              org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:98)<br />
+              org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:94)<br />
+              com.simplilearn.testng.GroupTest.launchFireFox(GroupTest.java:43)<br />
+              java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br />
+              java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)<br />
+              java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br />
+              java.base/java.lang.reflect.Method.invoke(Method.java:568)<br />
+              org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)<br />
+              org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)<br />
+              org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)<br />
+              org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)<br />
+              org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:962)<br />
+              org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)<br />
+              org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)<br />
+              org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)<br />
+              java.base/java.util.ArrayList.forEach(ArrayList.java:1511)<br />
+              org.testng.TestRunner.privateRun(TestRunner.java:806)<br />
+              org.testng.TestRunner.run(TestRunner.java:601)<br />
+              org.testng.SuiteRunner.runTest(SuiteRunner.java:433)<br />
+              org.testng.SuiteRunner.runSequentially(SuiteRunner.java:427)<br />
+              org.testng.SuiteRunner.privateRun(SuiteRunner.java:387)<br />
+              org.testng.SuiteRunner.run(SuiteRunner.java:330)<br />
+              org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)<br />
+              org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)<br />
+              org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)<br />
+              org.testng.TestNG.runSuitesLocally(TestNG.java:1176)<br />
+              org.testng.TestNG.runSuites(TestNG.java:1099)<br />
+              org.testng.TestNG.run(TestNG.java:1067)<br />
+              org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)<br />
+              org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)<br />
+              org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)<br />
+                </div>
+      </td>
+</tr>
+      </table>
+
+  <table class="resultsTable" width="100%">
+    <tr><th colspan="3" class="header skipped">Skipped Tests</th></tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.GroupTest</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  loginWithFireFox
+      </td>
+  <td class="duration">
+    0.000s
+  </td>
+  <td class="result">
+                             <i>Depends on method(s): </i>
+        <span class="dependency">com.simplilearn.testng.GroupTest.launchFireFox</span>
+                
+    
+        
+
+      </td>
+</tr>
+      </table>
+
+  <table class="resultsTable">
+    <tr><th colspan="3" class="header passed">Passed Tests</th></tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.AssertionExample</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  TitleTest
+      </td>
+  <td class="duration">
+    1.707s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.FacebookLogin</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  facebook
+      </td>
+  <td class="duration">
+    6.427s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.FirstDemo</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  Hello
+      </td>
+  <td class="duration">
+    0.016s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+<tr>
+  <td class="method">
+                  Hello1
+      </td>
+  <td class="duration">
+    0.003s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+          <tr>
+        <td colspan="3" class="group">com.simplilearn.testng.GroupTest</td>
+      </tr>
+            
+<tr>
+  <td class="method">
+                  launchChrome
+      </td>
+  <td class="duration">
+    9.422s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+<tr>
+  <td class="method">
+                  loginWithChrome
+      </td>
+  <td class="duration">
+    0.740s
+  </td>
+  <td class="result">
+        
+    
+        
+
+      </td>
+</tr>
+      </table>
+  
+</body>
+</html>
