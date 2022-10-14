@@ -1,0 +1,271 @@
+package: com.application.demo
+
+AdhaarRegisterApplication.java
+------------------------------
+
+package com.application.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AdhaarRegisterApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AdhaarRegisterApplication.class, args);
+	}
+
+}
+
+
+Package : com.application.demo.login
+-------------------------------------------
+
+loginController.java
+--------------------------------
+package com.application.demo.login;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.application.demo.NewAdhaar.Model;
+
+
+@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/login")
+public class LoginController {
+
+	
+@Autowired
+private LoginService service;
+
+@PostMapping("/")
+public ResponseEntity<LoginModel> addUser(@RequestBody LoginModel LoginModel){
+	LoginModel user= service.addAuthor(LoginModel);
+	if(user!=null)  
+		return new ResponseEntity<LoginModel>(user,HttpStatus.CREATED);
+	else
+		return new ResponseEntity<LoginModel>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+}
+
+//List of Users Or RETRIVE DATA
+@GetMapping("/")
+public  List<LoginModel> getAllUser(){
+	return service.getAllUser();
+}
+
+
+}
+
+
+LoginModel.java
+---------------
+
+package com.application.demo.login;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class LoginModel {
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	private String userName;
+	private String Password;
+	private String role;
+	@Override
+	public String toString() {
+		return "LoginModel [id=" + id + ", userName=" + userName + ", Password=" + Password + ", role=" + role + "]";
+	}
+	public LoginModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+
+}
+
+
+LoginRepo.java
+---------------
+package com.application.demo.login;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface LoginRepo extends JpaRepository<LoginModel, Integer> {
+
+}
+
+
+LoginService.java
+-------------------
+
+package com.application.demo.login;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.application.demo.NewAdhaar.Model;
+
+@Service
+public class LoginService {
+	
+	@Autowired
+	private LoginRepo repository;
+	
+	//add method or CREATE RECORD
+	public LoginModel addAuthor(LoginModel LoginModel) {
+		return repository.save(LoginModel);
+	}
+	
+	
+	//List user Method
+	public List<LoginModel> getAllUser(){
+		return repository.findAll();
+	}
+
+
+	
+}
+
+
+
+Package : com.application.demo.NewAdhaar
+----------------------------------------
+
+Controller.java
+================
+
+package com.application.demo.NewAdhaar;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/NewApplication")
+public class Controller {
+	
+	@Autowired
+	private Service service;
+
+	@PostMapping("/")
+	public ResponseEntity<Model> ApplicationForAdhaar(@RequestBody Model application){
+		Model user= service.ApplyForAdhaar(application);
+		if(user!=null)  
+			return new ResponseEntity<Model>(user,HttpStatus.CREATED);
+		else
+			return new ResponseEntity<Model>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	//List of Users Or RETRIVE DATA
+	@GetMapping("/")
+	public  List<Model> getAllApplication(){
+		return service.getAllApplications();
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateUser(@RequestBody Model user,@PathVariable int id){
+		Model data= service.Approve(user, id);
+		
+		if(data!=null)
+			return new ResponseEntity<Object>(data,HttpStatus.OK);
+		else
+			return new ResponseEntity<Object>("User is Not Available",HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Model> getUserById(@PathVariable int id){
+		  Model user= service.getUserById(id);
+		  
+		  if(user!=null)
+			  return new ResponseEntity<Model>(user,HttpStatus.FOUND);
+		  else
+			  return new  ResponseEntity<Model>(user,HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> deleteUser(@PathVariable  int id ){
+		
+		if(service.deleteUser(id))
+			return new ResponseEntity<Object>("User Deleted", HttpStatus.OK);
+		else
+			return new ResponseEntity<Object>("No User Found",HttpStatus.NOT_FOUND);
+	}
+	 
+
+}
+
+Repository.java
+================
+package com.application.demo.NewAdhaar;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+@org.springframework.stereotype.Repository
+public interface Repository extends JpaRepository<Model, Integer> {
+
+}
+
+
